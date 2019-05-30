@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <RankStock />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  import { mapActions } from 'vuex';
+  import RankStock from '../components/home/RankStock.vue';
+  
+  export default {
+    components: {
+      RankStock
+    },
+    methods: {
+      ...mapActions(['fetchStock'])
+    },
+    created() {
+      this.fetchStock();
+    }
   }
-}
 </script>
+
+<style>
+
+</style>
