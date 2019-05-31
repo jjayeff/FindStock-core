@@ -13,9 +13,13 @@
       RankStock
     },
     methods: {
-      ...mapActions(['fetchStock'])
+      ...mapActions([
+        'fetchStock', 
+        'fetchStockFast'
+      ])
     },
     created() {
+      this.fetchStockFast();
       this.fetchStock();
     }
   }

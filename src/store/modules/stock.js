@@ -13,7 +13,13 @@ const getters = {
 
 const actions = {
     async fetchStock({commit}) {
+        this.loading = true;
         const res = await stockService.getUser();
+        commit('SET_STOCK', res);
+    },
+    async fetchStockFast({commit}) {
+        this.loading = true;
+        const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/stockfast');
         commit('SET_STOCK', res);
     }
 };

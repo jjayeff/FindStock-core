@@ -10,6 +10,11 @@ class StockProvider extends HttpRequest {
     const {data} = await this.get();
     return data
   }
+
+  async getUserByPath (path) {
+    const {data} = await this.request('GET', path);
+    return data
+  }
 }
 
 export default StockProvider

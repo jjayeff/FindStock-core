@@ -1,9 +1,13 @@
 <template>
   <div>
+    <!--Detail-->
+    <div>
+      <DetailStock id="detail"/>
+    </div>
     <!--Selected-->
     <template>
       <div>
-        <v-layout wrap align-center>
+        <v-layout wrap>
 
           <v-flex xs12 sm5 pt-5>
             <v-select
@@ -43,10 +47,6 @@
         </v-layout>
       </div>
     </template>
-    <!--Detail-->
-    <div>
-      <DetailStock />
-    </div>
     <!--Table-->
     <div class="hidden-md-and-down">
       <v-data-table
@@ -57,33 +57,29 @@
           item-key="Symbol"
       >
         <template v-slot:items="props">
-          <tr @click="props.expanded = !props.expanded">
+          <tr @click="$vuetify.goTo('#detail')">
             <td><a>{{ props.item.Symbol }}</a></td>
             <td>{{ props.item.Industry }}</td>
             <td>{{ props.item.Sector }}</td>
             <td>
-              <v-icon color="success" v-if="props.item.SET50 == 'True' ? true : false">check_circle</v-icon>
+              <v-icon color="success" v-if="props.item.SET50">check_circle</v-icon>
             </td>
             <td
               :class="[props.item.Return_rate > 0 ? 'green--text' : 'red--text']"
-            >{{ props.item.Return_rate == "" ? '-': props.item.Return_rate + '%' }}</td>
+            >{{ props.item.Return_rate == null ? '-': props.item.Return_rate + '%' }}</td>
             <td
               :class="[colorRate(props.item.IAA_rate)]"
-            >{{ props.item.IAA_rate == "" ? '-': props.item.IAA_rate + '%' }}</td>
+            >{{ props.item.IAA_rate == null ? '-': props.item.IAA_rate + '%' }}</td>
             <td
               :class="[colorRate(props.item.Growth_stock_rate)]"
-            >{{ props.item.IAA_Growth_stock_raterate == "" ? '-': props.item.Growth_stock_rate + '%' }}</td>
+            >{{ props.item.Growth_stock_rate == null ? '-': props.item.Growth_stock_rate + '%' }}</td>
             <td
               :class="[colorRate(props.item.Stock_dividend_rate)]"
-            >{{ props.item.Stock_dividend_rate == "" ? '-': props.item.Stock_dividend_rate + '%' }}</td>
+            >{{ props.item.Stock_dividend_rate == null ? '-': props.item.Stock_dividend_rate + '%' }}</td>
             <td
               :class="[colorRate(props.item.Score)]"
             >{{ props.item.Score }} %</td>
           </tr>
-        </template>
-        <!--Expansion table-->
-        <template>
-          <DetailStock />
         </template>
       </v-data-table>
     </div>
@@ -136,8 +132,8 @@
         industrySelected: 'ทั้งหมด',
         sector: ['ทั้งหมด'],
         sectorSelected: 'ทั้งหมด',
-        set50Selected: '',
-        set100Selected: ''
+        set50Selected: null,
+        set100Selected: null
       };
     },
     methods: {
@@ -162,11 +158,11 @@
           })
         if(this.set50Selected == 'true')
           obj = obj.filter(item => {
-            return item.SET50 == 'True'
+            return item.SET50 == true
           })
           if(this.set100Selected == 'true')
           obj = obj.filter(item => {
-            return item.SET100 == 'True'
+            return item.SET100 == true
           })
         return obj;
       }
@@ -182,5 +178,4 @@
 </script>
 
 <style scoped>
-
 </style>
