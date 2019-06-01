@@ -2,46 +2,54 @@
   <div>
     <!--Selected-->
     <template>
-      <div>
-        <v-layout wrap>
-
-          <v-flex xs12 sm5 pt-5>
-            <v-select
-              v-model="industrySelected"
-              :items="industry"
-              label="เลือกกลุ่มอุตสาหกรรม"
-              outline
-            ></v-select>
-          </v-flex>
-
-          <v-flex xs12 sm5 pt-5>
-            <v-select
-              v-model="sectorSelected"
-              :items="sector"
-              label="เลือกหมวดธุรกิจ"
-              outline
-            ></v-select>
-          </v-flex>
-
-          <v-flex xs12 sm2>
-            <v-switch
-              v-model="set50Selected"
-              label="SET50"
-              color="primary"
-              value="true"
-              hide-details
-            ></v-switch>
-            <v-switch
-              v-model="set100Selected"
-              label="SET100"
-              color="info"
-              value="true"
-              hide-details
-            ></v-switch>
-          </v-flex>
-
-        </v-layout>
-      </div>
+      <v-form>
+        <v-container py-0>
+          <v-layout wrap>
+            <v-flex xs6 lg9>
+              <v-text-field 
+                v-model="symbolSelected"
+                label="สัญลักษณ์"
+                prepend-icon="search"
+              />
+            </v-flex>
+            <v-flex xs3 lg1>
+              <v-checkbox
+                  v-model="set50Selected"
+                  label="SET50"
+                  color="primary"
+                  value="true"
+                ></v-checkbox>
+            </v-flex>
+            <v-flex xs3 lg2>
+                <v-checkbox
+                  v-model="set100Selected"
+                  label="SET100"
+                  color="success"
+                  value="true"
+                ></v-checkbox>
+            </v-flex>
+            
+            <v-flex xs12 md6>
+              <v-select
+                v-model="industrySelected"
+                :items="industry"
+                label="เลือกกลุ่มอุตสาหกรรม"
+                prepend-icon="public"
+                outline
+              ></v-select>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-select
+                v-model="sectorSelected"
+                :items="sector"
+                label="เลือกหมวดธุรกิจ"
+                prepend-icon="business"
+                outline
+              ></v-select>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-form>
     </template>
     <!--Table-->
     <div>
@@ -125,6 +133,7 @@
           sectorSelected: 'ทั้งหมด',
           set50Selected: null,
           set100Selected: null,
+          symbolSelected: ''
         }
     },
     methods: {
@@ -147,6 +156,9 @@
       ...mapGetters(['allStocks', 'stockLoading']),
       stock: function() {
         var obj = this.allStocks;
+        obj = obj.filter(item => {
+          return item.Symbol.match(this.symbolSelected.toUpperCase().trim())
+        })
         if(this.industrySelected != 'ทั้งหมด')
           obj = obj.filter(item => {
             return item.Industry == this.industrySelected
