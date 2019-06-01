@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <RankStock />
-  </div>
+    <app-Home />
 </template>
 
 <script>
   import { mapActions } from 'vuex';
-  import RankStock from '../components/home/RankStock.vue';
+  import appHome from '../components/home';
   
   export default {
     components: {
-      RankStock
+      appHome
     },
     methods: {
       ...mapActions([
@@ -24,7 +22,3 @@
     }
   }
 </script>
-
-<style>
-
-</style>

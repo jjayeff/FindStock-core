@@ -1,0 +1,54 @@
+{
+  "Symbol": "IVL",
+  "Name": "บริษัท อินโดรามา เวนเจอร์ส จำกัด (มหาชน)",
+  "Market": "SET",
+  "Industry": "สินค้าอุตสาหกรรม",
+  "Sector": "ปิโตรเคมีและเคมีภัณฑ์",
+  "Website": "www.indoramaventures.com",
+  "SET50": true,
+  "SET100": true,
+  "Market_cap": "258269.39",
+  "First_trade_date": "2/5/2010 12:00:00 AM",
+  "Return_rate": "-21.10",
+  "Price_rate": "25.76",
+  "IAA_rate": "90.00",
+  "Growth_stock_rate": "100.00",
+  "Stock_dividend_rate": "100.00",
+  "SET50_rate": "100.00",
+  "SET100_rate": "100.00",
+  "PE_rate": "50.00",
+  "PBV_rate": "0.00",
+  "ROE_rate": "100.00",
+  "ROA_rate": "50.00",
+  "Market_cap_rate": "100.00",
+  "Score": "88.38",
+  "GrowthStock": {
+      "Net_rate": "100.00",
+      "Assets_rate": "100.00",
+      "Price_rate": "100.00"
+  },
+  "StockDividend": {
+      "DIv_rate": "100.00",
+      "More_one_rate": "100.00",
+      "Double_rate": "100.00"
+  },
+  "Finance": {
+      "FinanceInfoYearly": null,
+      "FinanceStatYearly": null,
+      "FinanceInfoQuarter": null,
+      "FinanceStatDaily": {
+          "Date": "5/31/2019 12:00:00 AM",
+          "Year": "2019",
+          "Lastprice": "46.00",
+          "Market_cap": "258269.39",
+          "FS_date": "3/31/2019 12:00:00 AM",
+          "PE": "10.60",
+          "PBV": "1.79",
+          "BookValue_Share": "25.72",
+          "Dvd_Yield": "3.04",
+          "LastUpdate": "6/1/2019 12:00:00 AM"
+      }
+  },
+  "HistoryFinanceStat": null,
+  "LastUpdate": "6/1/2019 12:00:00 AM"
+}

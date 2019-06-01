@@ -1,9 +1,5 @@
 <template>
   <div>
-    <!--Detail-->
-    <div>
-      <DetailStock id="detail"/>
-    </div>
     <!--Selected-->
     <template>
       <div>
@@ -48,16 +44,16 @@
       </div>
     </template>
     <!--Table-->
-    <div class="hidden-md-and-down">
+    <div>
       <v-data-table
-          :headers="headers"
-          :items="stock"
-          :pagination.sync="pagination"
-          :loading="stockLoading"
-          item-key="Symbol"
+        :headers="headers"
+        :items="stock"
+        :pagination.sync="pagination"
+        :loading="stockLoading"
+        item-key="Symbol"
       >
         <template v-slot:items="props">
-          <tr @click="$vuetify.goTo('#detail')">
+          <tr @click="handlerClick(props.item.Symbol)">
             <td><a>{{ props.item.Symbol }}</a></td>
             <td>{{ props.item.Industry }}</td>
             <td>{{ props.item.Sector }}</td>
@@ -78,7 +74,7 @@
             >{{ props.item.Stock_dividend_rate == null ? '-': props.item.Stock_dividend_rate + '%' }}</td>
             <td
               :class="[colorRate(props.item.Score)]"
-            >{{ props.item.Score }} %</td>
+            >{{ props.item.Score }}%</td>
           </tr>
         </template>
       </v-data-table>
@@ -88,53 +84,48 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import DetailStock from './DetailStock.vue';
 
   export default {
-    components: {
-      DetailStock
-    },
     data() {
-      return {
-        expand: false,
-        pagination: {
-          descending: true,
-          rowsPerPage: 10,
-          sortBy: "Score"
-        },
-        headers: [
-          {
-            text: "สัญลักษณ์",
-            align: "left",
-            sortable: false,
-            value: "Symbol"
+        return {
+          pagination: {
+            descending: true,
+            rowsPerPage: 10,
+            sortBy: "Score"
           },
-          { text: "กลุ่มอุตสาหกรรม", value: "Industry" },
-          { text: "หมวดธุรกิจ", value: "Sector" },
-          { text: "SET50", value: "SET50" },
-          { text: "ผลตอบแทน 1 ปี", value: "Return_rate" },
-          { text: "แนะนำให้ซื้อ", value: "IAA_rate" },
-          { text: "หุ้นเติบโต", value: "Growth_stock_rate" },
-          { text: "หุ้นปันผล", value: "Stock_dividend_rate" },
-          { text: "คะแนน", value: "Score" }
-        ],
-        industry: [
-          'ทั้งหมด',
-          'เกษตรและอุตสาหกรรมอาหาร',
-          'สินค้าอุปโภคบริโภค',
-          'ธุรกิจการเงิน',
-          'สินค้าอุตสาหกรรม',
-          'อสังหาริมทรัพย์และก่อสร้าง',
-          'ทรัพยากร',
-          'บริการ',
-          'เทคโนโลยี'
-        ],
-        industrySelected: 'ทั้งหมด',
-        sector: ['ทั้งหมด'],
-        sectorSelected: 'ทั้งหมด',
-        set50Selected: null,
-        set100Selected: null
-      };
+          headers: [
+              {
+                  text: "สัญลักษณ์",
+                  align: "left",
+                  sortable: false,
+                  value: "Symbol"
+              },
+              { text: "กลุ่มอุตสาหกรรม", value: "Industry" },
+              { text: "หมวดธุรกิจ", value: "Sector" },
+              { text: "SET50", value: "SET50" },
+              { text: "ผลตอบแทน 1 ปี", value: "Return_rate" },
+              { text: "แนะนำให้ซื้อ", value: "IAA_rate" },
+              { text: "หุ้นเติบโต", value: "Growth_stock_rate" },
+              { text: "หุ้นปันผล", value: "Stock_dividend_rate" },
+              { text: "คะแนน", value: "Score" }
+          ],
+          industry: [
+            'ทั้งหมด',
+            'เกษตรและอุตสาหกรรมอาหาร',
+            'สินค้าอุปโภคบริโภค',
+            'ธุรกิจการเงิน',
+            'สินค้าอุตสาหกรรม',
+            'อสังหาริมทรัพย์และก่อสร้าง',
+            'ทรัพยากร',
+            'บริการ',
+            'เทคโนโลยี'
+          ],
+          industrySelected: 'ทั้งหมด',
+          sector: ['ทั้งหมด'],
+          sectorSelected: 'ทั้งหมด',
+          set50Selected: null,
+          set100Selected: null,
+        }
     },
     methods: {
       colorRate: function(data) {
@@ -142,6 +133,14 @@
           : data >= 50 ? 'green--text'
           : data >= 25 ? 'orange--text'
           : 'red--text'
+      },
+      handlerClick: function(symbol) {
+        this.$vuetify.goTo('#detail');
+        var obj = this.allStocks;
+        obj = obj.filter(item => {
+          return item.Symbol == symbol
+        })
+        this.$emit('stockSelected', obj[0])
       }
     },
     computed: {
@@ -160,10 +159,11 @@
           obj = obj.filter(item => {
             return item.SET50 == true
           })
-          if(this.set100Selected == 'true')
+        if(this.set100Selected == 'true')
           obj = obj.filter(item => {
             return item.SET100 == true
           })
+        this.$emit('stockSelected', obj[0])          
         return obj;
       }
     },
@@ -177,5 +177,6 @@
   }
 </script>
 
-<style scoped>
+<style>
+
 </style>
