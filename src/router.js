@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Stock from './views/Stock.vue'
 import Test from './views/Test.vue';
+import Test1 from './views/Test1.vue';
 
 Vue.use(Router)
 
@@ -19,6 +20,10 @@ export default new Router({
     {
       path: '/stock/:symbol',
       component: Stock
+    },
+    {
+      path: '/test/:id',
+      component: Test1
     },
     {
       path: '/news',
