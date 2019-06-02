@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Stock from './views/Stock.vue'
+import Test from './views/Test.vue';
 
 Vue.use(Router)
 
@@ -18,6 +19,10 @@ export default new Router({
     {
       path: '/stock/:symbol',
       component: Stock
+    },
+    {
+      path: '/news',
+      component: Test
     },
     {
       path: '*',

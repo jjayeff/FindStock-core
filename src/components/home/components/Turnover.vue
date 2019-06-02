@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row wrap v-if="stock == undefined ? false : true">
     <v-flex md6 xs12>
       <v-layout row wrap>
         <v-flex xs4 v-for="item in items" :key="item.name">
@@ -52,7 +52,6 @@
 </template>
 
 <script>
-  import json from './Simple.json';
 
   export default {
     props: ['data', 'active'],
@@ -103,7 +102,7 @@
             process: false
           },
         ],
-        stock: json,
+        stock: null,
         series: [44, 55, 67, 83],
         chartOptions: {
           plotOptions: {
@@ -134,29 +133,30 @@
     watch: {
       data: function(val) { 
         this.stock = val
-        this.items.forEach((item, i) => {
-          switch(i) {
-            case 0:
-              item.valueMax = parseFloat(val.GrowthStock.Net_rate)
-              break;
-            case 1:
-              item.valueMax = parseFloat(val.GrowthStock.Assets_rate)
-              break;
-            case 2:
-              item.valueMax = parseFloat(val.GrowthStock.Price_rate)
-              break;
-            case 3:
-              item.valueMax = parseFloat(val.StockDividend.DIv_rate)
-              break;
-            case 4:
-              item.valueMax = parseFloat(val.StockDividend.More_one_rate)
-              break;
-            default:
-              item.valueMax = parseFloat(val.StockDividend.Double_rate)
-          }
-          item.process = false
-          item.value = 0
-        })
+        if(this.stock != undefined)
+          this.items.forEach((item, i) => {
+            switch(i) {
+              case 0:
+                item.valueMax = parseFloat(val.GrowthStock.Net_rate)
+                break;
+              case 1:
+                item.valueMax = parseFloat(val.GrowthStock.Assets_rate)
+                break;
+              case 2:
+                item.valueMax = parseFloat(val.GrowthStock.Price_rate)
+                break;
+              case 3:
+                item.valueMax = parseFloat(val.StockDividend.DIv_rate)
+                break;
+              case 4:
+                item.valueMax = parseFloat(val.StockDividend.More_one_rate)
+                break;
+              default:
+                item.valueMax = parseFloat(val.StockDividend.Double_rate)
+            }
+            item.process = false
+            item.value = 0
+          })
         this.progressBar = true
       },
       active: function(val) { 
