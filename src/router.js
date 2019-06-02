@@ -23,6 +23,7 @@ export default new Router({
     },
     {
       path: '/test/:id',
+      props: { default: true, sidebar: false },
       component: Test1
     },
     {
