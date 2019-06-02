@@ -5,7 +5,7 @@
       <v-flex md4 xs12>
         <app-info/>
       </v-flex>
-      <v-flex md8 xs12>
+      <!--<v-flex md8 xs12>
         <app-price/>
       </v-flex>
       <v-flex xs12>
@@ -14,7 +14,7 @@
       <v-flex lg5 xs12>
         <app-price/>
       </v-flex>
-      <!--<v-flex lg7 xs12>
+      <v-flex lg7 xs12>
         <app-tab />
       </v-flex>-->
     </v-layout>
@@ -22,17 +22,17 @@
 </template>
 
 <script>
-  import appHeader from './components/Header.vue';
-  import appPrice from './components/Price.vue';
+  //import appHeader from './components/Header.vue';
+  //import appPrice from './components/Price.vue';
   import appInfo from './components/Info';
-  import appProgress from './components/Progress';
+  //import appProgress from './components/Progress';
 
   export default {
     components: {
-      appHeader,
-      appPrice,
+      //appHeader,
+      //appPrice,
       appInfo,
-      appProgress,
+      //appProgress,
     }
   }
 </script>
