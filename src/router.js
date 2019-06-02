@@ -19,10 +19,13 @@ export default new Router({
     },
     {
       path: '/stock/:symbol',
+      name: 'stock',
+      props: true,
       component: Stock
     },
     {
       path: '/test/:id',
+      name: 'test',
       props: true,
       component: Test1
     },
