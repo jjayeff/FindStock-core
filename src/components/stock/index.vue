@@ -14,9 +14,9 @@
       <v-flex lg5 xs12>
         <app-price/>
       </v-flex>
-      <v-flex lg7 xs12>
+      <!--<v-flex lg7 xs12>
         <app-tab />
-      </v-flex>
+      </v-flex>-->
     </v-layout>
   </div>
 </template>
@@ -26,7 +26,6 @@
   import appPrice from './components/Price.vue';
   import appInfo from './components/Info';
   import appProgress from './components/Progress';
-  import appTab from './components/Tab.vue';
 
   export default {
     components: {
@@ -34,7 +33,6 @@
       appPrice,
       appInfo,
       appProgress,
-      appTab
     }
   }
 </script>
