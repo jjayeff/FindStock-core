@@ -62,7 +62,7 @@
       >
         <template v-slot:items="props">
           <tr @click="handlerClick(props.item.Symbol)">
-            <td><a>{{ props.item.Symbol }}</a></td>
+            <td><a :href="'/stock/' + props.item.Symbol">{{ props.item.Symbol }}</a></td>
             <td>{{ props.item.Industry }}</td>
             <td>{{ props.item.Sector }}</td>
             <td>
@@ -142,6 +142,10 @@
           : data >= 50 ? 'green--text'
           : data >= 25 ? 'orange--text'
           : 'red--text'
+      },
+      searchItem: function() {
+        var obj = this.allStocks;
+        return Object.keys(obj).map(i => obj[i].Symbol);
       },
       handlerClick: function(symbol) {
         this.$vuetify.goTo('#detail');

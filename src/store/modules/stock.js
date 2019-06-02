@@ -12,23 +12,28 @@ const getters = {
 };
 
 const actions = {
-    async fetchStock({commit}) {
-        this.loading = true;
-        const res = await stockService.getUser();
-        commit('SET_STOCK', res);
-    },
-    async fetchStockFast({commit}) {
-        this.loading = true;
-        const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/stockfast');
-        commit('SET_STOCK', res);
-    }
+  async fetchStock({commit}) {
+      this.loading = true;
+      const res = await stockService.getUser();
+      commit('SET_STOCK', res);
+  },
+  async fetchStockFast({commit}) {
+      this.loading = true;
+      const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/stockfast');
+      commit('SET_STOCK', res);
+  },
+  async fetchSingleStock({commit}, symbol) {
+    this.loading = true;
+    const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/stock/' + symbol);
+    commit('SET_STOCK', res);
+ },
 };
 
 const mutations = {
     SET_STOCK (state, data) {
         state.stock = data;
         state.loading = false;
-    }
+    },
 };
 
 export default {
