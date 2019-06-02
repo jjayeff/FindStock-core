@@ -23,11 +23,12 @@ export default new Router({
     },
     {
       path: '/test/:id',
-      props: { default: true, sidebar: false },
+      props: true,
       component: Test1
     },
     {
       path: '/news',
+      props: true,
       component: Test
     },
     {
