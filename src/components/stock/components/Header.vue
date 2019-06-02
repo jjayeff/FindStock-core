@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row wrap v-if="stock == undefined ? false : true">
     <v-flex xs12>
       <h4 class="text-xs-right grey--text text--darken-2">อัพเดทล่าสุด: {{ stock.LastUpdate }}</h4>
     </v-flex>
