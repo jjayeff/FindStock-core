@@ -2,7 +2,7 @@
   <v-layout row wrap>
     <v-flex md6 xs12>
       <div id="chart">
-        <apexchart type=bar height=350 :options="chartOptions" :series="series"  v-if="test"/>
+        <apexchart type=bar height=350 :options="chartOptions" :series="series"  v-if="reChat"/>
       </div>
     </v-flex>
     <v-flex md6 xs12>
@@ -12,7 +12,7 @@
           <p class="grey--text text--darken-1">{{ stock.Name }}</p>
         </v-flex>
         <v-flex class="borderBottle" xs6>
-          <h1 class="text-xs-right green--text"><v-icon large class="success--text" pr-3>arrow_drop_up</v-icon>{{ stock.Finance.FinanceStatDaily.Lastprice }}</h1>
+          <h1 class="text-xs-right" :class="lastPriceColor"><v-icon large :class="lastPriceColor" pr-3>{{lastPriceIcon}}</v-icon>{{ this.stock.Finance.FinanceStatDaily.Lastprice }}</h1>
           <h4 class="text-xs-right grey--text"><v-icon small class="grey--text">access_time</v-icon>{{ stock.Finance.FinanceStatDaily.Date }}</h4>
         </v-flex>
         <v-flex xs12>
@@ -48,7 +48,7 @@
     props: ['data', 'active'],
     data() {
       return {  
-        test: true,
+        reChat: true,
         stock: json,
         series: [{
           name: 'เปอร์เซนต์',
@@ -117,6 +117,28 @@
         }
       }
     },
+    computed: {
+      lastPriceColor: function() {
+        var color = 'success--text'
+        if(this.stock.HistoryFinanceStat != null) {
+          var today_price = this.stock.HistoryFinanceStat[0].Lastprice;
+          var yesterday_price = this.stock.HistoryFinanceStat[1].Lastprice;
+          if(today_price < yesterday_price)
+            color = 'error--text'
+        }
+        return color
+      },
+      lastPriceIcon: function() {
+        var icon = 'arrow_drop_up'
+        if(this.stock.HistoryFinanceStat != null) {
+          var today_price = this.stock.HistoryFinanceStat[0].Lastprice;
+          var yesterday_price = this.stock.HistoryFinanceStat[1].Lastprice;
+          if(today_price < yesterday_price)
+            icon = 'arrow_drop_down'
+        }
+        return icon
+      }
+    },
     watch: {
       data: function(val) { 
         this.stock = val
@@ -124,10 +146,10 @@
       },
       active: function(val) { 
         if(val == 0) {
-          this.test = false
+          this.reChat = false
           this.$nextTick().then(() => {
             // re-render
-            this.test = true
+            this.reChat = true
           });
         }
       },

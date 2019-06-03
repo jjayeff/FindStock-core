@@ -6,16 +6,16 @@
         <app-info/>
       </v-flex>
       <v-flex md8 xs12>
-        <app-price/>
+        <app-chat-price/>
       </v-flex>
       <v-flex xs12>
         <app-progress />
       </v-flex>
       <v-flex lg5 xs12>
-        <app-price/>
+        <app-tab-chat/>
       </v-flex>
       <v-flex lg7 xs12>
-        <app-tab />
+        <app-tab-table />
       </v-flex>
     </v-layout>
   </div>
@@ -23,18 +23,20 @@
 
 <script>
   import appHeader from './components/Header.vue';
-  import appPrice from './components/Price.vue';
+  import appChatPrice from './components/ChatPrice';
   import appInfo from './components/Info';
   import appProgress from './components/Progress';
-  import appTab from './components/Tab.vue';
+  import appTabTable from './components/TabTable.vue';
+  import appTabChat from './components/TabChat';
 
   export default {
     components: {
       appHeader,
-      appPrice,
+      appChatPrice,
       appInfo,
       appProgress,
-      appTab
+      appTabTable,
+      appTabChat,
     }
   }
 </script>
