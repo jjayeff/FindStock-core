@@ -1,14 +1,16 @@
 <template>
-  <table>
-    <tr>
-      <th class="text-xs-center">ค่าสถิติสำคัญ<br/>ณ วันที่</th>
-      <th v-for="(title, i) in titles" :key="i">งบปี {{title.year}}<br/>{{title.date}}</th>
-      <th>ไตรมาส {{quarter.quarter}}/{{quarter.year}}<br/>{{quarter.date}}</th>
-    </tr>
-    <tr v-for="list in lists" :key="list.name">
-      <td v-for="(value, index) in list.value" :key="index" :class="list.value.length == 1 ? 'blue--text':''">{{ value }}</td>
-    </tr>
-  </table>
+  <div style="overflow-x:auto;">
+    <table>
+      <tr>
+        <th class="text-xs-center">ค่าสถิติสำคัญ<br/>ณ วันที่</th>
+        <th v-for="(title, i) in titles" :key="i">งบปี {{title.year}}<br/>{{title.date}}</th>
+        <th>ไตรมาส {{quarter.quarter}}/{{quarter.year}}<br/>{{quarter.date}}</th>
+      </tr>
+      <tr v-for="list in lists" :key="list.name">
+        <td v-for="(value, index) in list.value" :key="index" :class="list.value.length == 1 ? 'blue--text':''">{{ value }}</td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
