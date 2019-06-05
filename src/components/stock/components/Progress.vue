@@ -98,11 +98,11 @@
       }
     },
     computed: {
-      ...mapGetters(['allStocks']),
+      ...mapGetters(['SingleStock']),
     },
     watch: {
-      allStocks: function() {
-        this.stock = this.allStocks[0]
+      SingleStock: function() {
+        this.stock = this.SingleStock[0]
         this.items.forEach((item, i) => {
           switch(i) {
             case 0:

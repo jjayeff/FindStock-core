@@ -62,7 +62,7 @@
       >
         <template v-slot:items="props">
           <tr @click="handlerClick(props.item.Symbol)">
-            <td><a :href="'/stock/' + props.item.Symbol">{{ props.item.Symbol }}</a></td>
+            <td><router-link :to="'/stock/' + props.item.Symbol">{{ props.item.Symbol }}</router-link></td>
             <td>{{ props.item.Industry }}</td>
             <td>{{ props.item.Sector }}</td>
             <td>

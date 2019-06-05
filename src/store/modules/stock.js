@@ -3,11 +3,13 @@ const stockService = new StockProvider()
 
 const state = {
     stock: [],
+    single: [],
     loading: true
 };
 
 const getters = {
     allStocks: (state) => state.stock,
+    SingleStock: (state) => state.single,
     stockLoading: (state) => state.loading,
 };
 
@@ -25,7 +27,7 @@ const actions = {
   async fetchSingleStock({commit}, symbol) {
     this.loading = true;
     const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/stock/' + symbol);
-    commit('SET_STOCK', res);
+    commit('SET_SINGLE_STOCK', res);
  },
 };
 
@@ -34,6 +36,10 @@ const mutations = {
         state.stock = data;
         state.loading = false;
     },
+    SET_SINGLE_STOCK (state, data) {
+      state.single = data;
+      state.loading = false;
+  },
 };
 
 export default {

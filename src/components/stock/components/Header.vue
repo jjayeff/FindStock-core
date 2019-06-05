@@ -23,9 +23,9 @@
 
   export default {
     computed: {
-      ...mapGetters(['allStocks']),
+      ...mapGetters(['SingleStock']),
       stock: function() {
-        var odj = this.allStocks[0]
+        var odj = this.SingleStock[0]
         return odj
       },
       lastPriceColor: function() {

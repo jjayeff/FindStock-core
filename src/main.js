@@ -3,11 +3,15 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import getIpAddress from './resources/getIpAddress';
 
 Vue.config.productionTip = false
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  // change title of website
   document.title = to.meta.title
+  // send ip address to DB
+  getIpAddress(to.fullPath, from.fullPath)
   next()
 })
 

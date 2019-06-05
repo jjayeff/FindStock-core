@@ -44,7 +44,7 @@
             <tr><td>P/E (เท่า)</td><td class="grey--text text--darken-2">{{ stock.Finance.FinanceStatDaily.PE }}</td></tr>
             <tr><td>P/BV (เท่า)</td><td class="grey--text text--darken-2">{{ stock.Finance.FinanceStatDaily.PBV }}</td></tr>
           </table>
-          <p class="text-xs-right"><a href="">ดูรายละเอียดเพิ่มเติม</a></p>
+          <p class="text-xs-right"><router-link :to="'/stock/' + stock.Symbol">ดูรายละเอียดเพิ่มเติม</router-link></p>
         </v-flex>
       </v-layout>
     </v-flex>

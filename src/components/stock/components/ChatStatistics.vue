@@ -53,9 +53,9 @@
     },
     methods: {
       changeData() {
-        if(this.allStocks.length > 0) {
-          var finance = this.allStocks[0].Finance.FinanceStatYearly;
-          var finance1 = this.allStocks[0].Finance.FinanceInfoYearly;
+        if(this.SingleStock.length > 0) {
+          var finance = this.SingleStock[0].Finance.FinanceStatYearly;
+          var finance1 = this.SingleStock[0].Finance.FinanceInfoYearly;
           this.series = this.series.map((value, i) => {
             switch(i) {
               case 0:
@@ -76,7 +76,7 @@
       }
     },
     computed: {
-      ...mapGetters(['allStocks'])
+      ...mapGetters(['SingleStock'])
     },
     watch: {
       active: function(val) { 
@@ -89,7 +89,7 @@
           });
         }
       },
-      allStocks: function() {
+      SingleStock: function() {
         this.changeData()
       }
     }

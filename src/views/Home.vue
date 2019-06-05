@@ -17,8 +17,10 @@
       ])
     },
     created() {
-      this.fetchStockFast();
-      this.fetchStock();
+      if(this.$store.state.stock.stock.length < 600){
+        this.fetchStockFast();
+        this.fetchStock();
+      }
     }
   }
 </script>

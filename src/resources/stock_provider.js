@@ -15,6 +15,11 @@ class StockProvider extends HttpRequest {
     const {data} = await this.request('GET', path);
     return data
   }
+
+  async postVisitor (path, data) {
+    const {result} = await this.request('POST', path, data);
+    return result
+  }
 }
 
 export default StockProvider
