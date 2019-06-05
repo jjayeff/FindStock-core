@@ -10,12 +10,12 @@ async function GetIpAddress (to, from) {
     result["Continent"] = json.continent_code;
     result["Country"] = json.country_name;
     result["Region"] = json.region;
+    result["Org"] = json.org;
     result["Latitude"] = json.latitude;
     result["Longitude"] = json.longitude;
-    result["Flag"] = 'http://assets.ipapi.com/flags/th.svg';
     result["Path_To"] = document.location.origin + to;
     result["Path_From"] = document.location.origin + from;
-    await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
+    //await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
   });
 
 }
