@@ -4,33 +4,18 @@ const stockService = new StockProvider()
 
 async function GetIpAddress (to, from) {
   // get ip address
-  var ip = "";
-  var access_key = "142b8ac74c490d26788b4702f69850b6";
-  await $.getJSON("https://jsonip.com?callback=?", data => {
-    console.log(data);
-    ip = data.ip;
-  });
-
-  // get the API result via jQuery.ajax
-  $.ajax({
-      url: 'http://api.ipapi.com/' + ip + '?access_key=' + access_key,   
-      dataType: 'jsonp',
-      success: async function(json) {
-
-          // output the "calling_code" object inside "location"
-          var result = {}
-          result["IP_Address"] = json.ip;
-          result["Continent"] = json.continent_name;
-          result["Country"] = json.country_name;
-          result["Region"] = json.region_name;
-          result["Latitude"] = json.latitude;
-          result["Longitude"] = json.longitude;
-          result["Flag"] = json.location.country_flag;
-          result["Path_To"] = document.location.origin + to;
-          result["Path_From"] = document.location.origin + from;
-          console.log(result);
-          await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
-      }
+  await $.getJSON("https://ipapi.co/json/", async function(json) {
+    var result = {}
+    result["IP_Address"] = json.ip;
+    result["Continent"] = json.continent_code;
+    result["Country"] = json.country_name;
+    result["Region"] = json.region;
+    result["Latitude"] = json.latitude;
+    result["Longitude"] = json.longitude;
+    result["Flag"] = 'http://assets.ipapi.com/flags/th.svg';
+    result["Path_To"] = document.location.origin + to;
+    result["Path_From"] = document.location.origin + from;
+    await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
   });
 
 }
