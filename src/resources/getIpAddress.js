@@ -6,9 +6,11 @@ async function GetIpAddress (to, from) {
   // get ip address
   var ip = "";
   var access_key = "142b8ac74c490d26788b4702f69850b6";
-  await $.getJSON("http://gd.geobytes.com/GetCityDetails?callback=?", data => {
-    ip = data.geobytesipaddress;
+  await $.getJSON("https://jsonip.com?callback=?", data => {
+    console.log(data);
+    ip = data.ip;
   });
+
   // get the API result via jQuery.ajax
   $.ajax({
       url: 'http://api.ipapi.com/' + ip + '?access_key=' + access_key,   
@@ -26,6 +28,7 @@ async function GetIpAddress (to, from) {
           result["Flag"] = json.location.country_flag;
           result["Path_To"] = document.location.origin + to;
           result["Path_From"] = document.location.origin + from;
+          console.log(result);
           await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
       }
   });
