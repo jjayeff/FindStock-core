@@ -4,12 +4,14 @@ const stockService = new StockProvider()
 const state = {
     stock: [],
     single: [],
+    sector: [],
     loading: true
 };
 
 const getters = {
     allStocks: (state) => state.stock,
-    SingleStock: (state) => state.single,
+    singleStock: (state) => state.single,
+    allSectors: (state) => state.sector,
     stockLoading: (state) => state.loading,
 };
 
@@ -29,16 +31,25 @@ const actions = {
     const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/stock/' + symbol);
     commit('SET_SINGLE_STOCK', res);
  },
+ async fetchSector({commit}, sector) {
+    this.loading = true;
+    const res = await stockService.getUserByPath('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/sector/' + sector);
+    commit('SET_SECTOR', res);
+  },
 };
 
 const mutations = {
-    SET_STOCK (state, data) {
-        state.stock = data;
-        state.loading = false;
-    },
-    SET_SINGLE_STOCK (state, data) {
-      state.single = data;
+  SET_STOCK (state, data) {
+      state.stock = data;
       state.loading = false;
+  },
+  SET_SINGLE_STOCK (state, data) {
+    state.single = data;
+    state.loading = false;
+  },
+  SET_SECTOR (state, data) {
+    state.sector = data;
+    state.loading = false;
   },
 };
 

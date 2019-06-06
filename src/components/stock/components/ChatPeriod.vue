@@ -78,8 +78,8 @@
     },
     methods: {
       changeData() {
-        if(this.SingleStock.length > 0) {
-          var finance = this.SingleStock[0].Finance.FinanceInfoYearly;
+        if(this.singleStock.length > 0) {
+          var finance = this.singleStock[0].Finance.FinanceInfoYearly;
           this.series = this.series.map((value, i) => {3
             switch(i) {
               case 0:
@@ -100,7 +100,7 @@
       }
     },
     computed: {
-      ...mapGetters(['SingleStock'])
+      ...mapGetters(['singleStock'])
     },
     watch: {
       active: function(val) { 
@@ -113,7 +113,7 @@
           });
         }
       },
-      SingleStock: function() {
+      singleStock: function() {
         this.changeData()
       }
     }

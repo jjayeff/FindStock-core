@@ -18,72 +18,72 @@
 
   export default {
     computed: {
-      ...mapGetters(['SingleStock']),
+      ...mapGetters(['singleStock']),
       lists: function() {
         var arr = []
-        if(this.SingleStock.length > 0) {
-          var finance = this.SingleStock[0].Finance.FinanceInfoYearly;
+        if(this.singleStock.length > 0) {
+          var finance = this.singleStock[0].Finance.FinanceInfoYearly;
           var Assets = [], Liabilities = [], Equity = [], Paid_up_cap = [], Revenue = [];
           var NetProfit = [], EPS = [] , ROA = [], ROE = [] , NetProfitMargin = [];
           if(finance != null) {
             Assets = finance.map((value) => {
               return value.Assets
             })
-            Assets.push(this.SingleStock[0].Finance.FinanceInfoQuarter.Assets)
+            Assets.push(this.singleStock[0].Finance.FinanceInfoQuarter.Assets)
             Assets.unshift('สินทรัพย์รวม')
             
             Liabilities = finance.map((value) => {
               return value.Liabilities
             })
-            Liabilities.push(this.SingleStock[0].Finance.FinanceInfoQuarter.Liabilities)
+            Liabilities.push(this.singleStock[0].Finance.FinanceInfoQuarter.Liabilities)
             Liabilities.unshift('หนี้สินรวม')
 
             Equity = finance.map((value) => {
               return value.Equity
             })
-            Equity.push(this.SingleStock[0].Finance.FinanceInfoQuarter.Equity)
+            Equity.push(this.singleStock[0].Finance.FinanceInfoQuarter.Equity)
             Equity.unshift('ส่วนของผู้ถือหุ้น')
 
             Paid_up_cap = finance.map((value) => {
               return value.Paid_up_cap
             })
-            Paid_up_cap.push(this.SingleStock[0].Finance.FinanceInfoQuarter.Paid_up_cap)
+            Paid_up_cap.push(this.singleStock[0].Finance.FinanceInfoQuarter.Paid_up_cap)
             Paid_up_cap.unshift('มูลค่าหุ้นที่เรียกชำระแล้ว')
 
             Revenue = finance.map((value) => {
               return value.Revenue
             })
-            Revenue.push(this.SingleStock[0].Finance.FinanceInfoQuarter.Revenue)
+            Revenue.push(this.singleStock[0].Finance.FinanceInfoQuarter.Revenue)
             Revenue.unshift('รายได้รวม')
 
             NetProfit = finance.map((value) => {
               return value.NetProfit
             })
-            NetProfit.push(this.SingleStock[0].Finance.FinanceInfoQuarter.NetProfit)
+            NetProfit.push(this.singleStock[0].Finance.FinanceInfoQuarter.NetProfit)
             NetProfit.unshift('กำไรสุทธิ')
 
             EPS = finance.map((value) => {
               return value.EPS
             })
-            EPS.push(this.SingleStock[0].Finance.FinanceInfoQuarter.EPS)
+            EPS.push(this.singleStock[0].Finance.FinanceInfoQuarter.EPS)
             EPS.unshift('กำไรต่อหุ้น (บาท)')
 
             ROA = finance.map((value) => {
               return value.ROA
             })
-            ROA.push(this.SingleStock[0].Finance.FinanceInfoQuarter.ROA)
+            ROA.push(this.singleStock[0].Finance.FinanceInfoQuarter.ROA)
             ROA.unshift('ROA(%)')
 
             ROE = finance.map((value) => {
               return value.ROE
             })
-            ROE.push(this.SingleStock[0].Finance.FinanceInfoQuarter.ROE)
+            ROE.push(this.singleStock[0].Finance.FinanceInfoQuarter.ROE)
             ROE.unshift('ROE(%)')
 
             NetProfitMargin = finance.map((value) => {
               return value.NetProfitMargin
             })
-            NetProfitMargin.push(this.SingleStock[0].Finance.FinanceInfoQuarter.NetProfitMargin)
+            NetProfitMargin.push(this.singleStock[0].Finance.FinanceInfoQuarter.NetProfitMargin)
             NetProfitMargin.unshift('อัตรากำไรสุทธิ(%)')
           }
           arr = [
@@ -141,8 +141,8 @@
       },
       titles: function() {
         var arr = []
-        if(this.SingleStock.length > 0) {
-          var finance = this.SingleStock[0].Finance.FinanceInfoYearly;
+        if(this.singleStock.length > 0) {
+          var finance = this.singleStock[0].Finance.FinanceInfoYearly;
           var Dates = []
           if(finance != null) {
             Dates = finance.map((value) => {
@@ -158,8 +158,8 @@
       },
       quarter: function() {
         var obj = {}
-         if(this.SingleStock.length > 0) {
-          var tmp = this.SingleStock[0].Finance.FinanceInfoQuarter
+         if(this.singleStock.length > 0) {
+          var tmp = this.singleStock[0].Finance.FinanceInfoQuarter
           obj['year'] = tmp.Year;
           obj['date'] = tmp.Date;
           obj['quarter'] = tmp.Quarter;

@@ -97,37 +97,47 @@
         }
       }
     },
+    created() {
+      this.setStock()
+    },
+    methods: {
+      setStock: function() {
+        if(this.singleStock.length > 0) {
+          this.stock = this.singleStock[0]
+          this.items.forEach((item, i) => {
+            switch(i) {
+              case 0:
+                item.valueMax = parseFloat(this.stock.GrowthStock.Net_rate)
+                break;
+              case 1:
+                item.valueMax = parseFloat(this.stock.GrowthStock.Assets_rate)
+                break;
+              case 2:
+                item.valueMax = parseFloat(this.stock.GrowthStock.Price_rate)
+                break;
+              case 3:
+                item.valueMax = parseFloat(this.stock.StockDividend.DIv_rate)
+                break;
+              case 4:
+                item.valueMax = parseFloat(this.stock.StockDividend.More_one_rate)
+                break;
+              default:
+                item.valueMax = parseFloat(this.stock.StockDividend.Double_rate)
+            }
+            item.process = false
+            item.value = 0
+          })
+          this.progressBar = true
+        }
+      }
+    },
     computed: {
-      ...mapGetters(['SingleStock']),
+      ...mapGetters(['singleStock']),
     },
     watch: {
-      SingleStock: function() {
-        this.stock = this.SingleStock[0]
-        this.items.forEach((item, i) => {
-          switch(i) {
-            case 0:
-              item.valueMax = parseFloat(this.stock.GrowthStock.Net_rate)
-              break;
-            case 1:
-              item.valueMax = parseFloat(this.stock.GrowthStock.Assets_rate)
-              break;
-            case 2:
-              item.valueMax = parseFloat(this.stock.GrowthStock.Price_rate)
-              break;
-            case 3:
-              item.valueMax = parseFloat(this.stock.StockDividend.DIv_rate)
-              break;
-            case 4:
-              item.valueMax = parseFloat(this.stock.StockDividend.More_one_rate)
-              break;
-            default:
-              item.valueMax = parseFloat(this.stock.StockDividend.Double_rate)
-          }
-          item.process = false
-          item.value = 0
-        })
-        this.progressBar = true
-        }
+      singleStock: function() {
+        this.setStock()
+      }
     },
     mounted () {
       this.interval = setInterval(() => {

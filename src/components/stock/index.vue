@@ -17,6 +17,12 @@
       <v-flex lg7 xs12>
         <app-tab-table />
       </v-flex>
+      <v-flex xs12>
+        <app-chat-comparison />
+      </v-flex>
+      <v-flex xs12>
+        <app-table-comparison />
+      </v-flex>
     </v-layout>
   </div>
 </template>
@@ -28,6 +34,8 @@
   import appProgress from './components/Progress';
   import appTabTable from './components/TabTable.vue';
   import appTabChat from './components/TabChat';
+  import appTableComparison from './components/TableComparison.vue';
+  import appChatComparison from './components/ChatComparison.vue';
 
   export default {
     components: {
@@ -37,6 +45,8 @@
       appProgress,
       appTabTable,
       appTabChat,
+      appTableComparison,
+      appChatComparison
     }
   }
 </script>

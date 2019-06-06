@@ -61,26 +61,31 @@
         item-key="Symbol"
       >
         <template v-slot:items="props">
-          <tr @click="handlerClick(props.item.Symbol)">
+          <tr>
             <td><router-link :to="'/stock/' + props.item.Symbol">{{ props.item.Symbol }}</router-link></td>
-            <td>{{ props.item.Industry }}</td>
-            <td>{{ props.item.Sector }}</td>
-            <td>
+            <td @click="handlerClick(props.item.Symbol)">{{ props.item.Industry }}</td>
+            <td @click="handlerClick(props.item.Symbol)">{{ props.item.Sector }}</td>
+            <td @click="handlerClick(props.item.Symbol)">
               <v-icon color="success" v-if="props.item.SET50">check_circle</v-icon>
             </td>
             <td
+              @click="handlerClick(props.item.Symbol)"
               :class="[props.item.Return_rate > 0 ? 'green--text' : 'red--text']"
             >{{ props.item.Return_rate == null ? '-': props.item.Return_rate + '%' }}</td>
             <td
+              @click="handlerClick(props.item.Symbol)"
               :class="[colorRate(props.item.IAA_rate)]"
             >{{ props.item.IAA_rate == null ? '-': props.item.IAA_rate + '%' }}</td>
             <td
+              @click="handlerClick(props.item.Symbol)"
               :class="[colorRate(props.item.Growth_stock_rate)]"
             >{{ props.item.Growth_stock_rate == null ? '-': props.item.Growth_stock_rate + '%' }}</td>
             <td
+              @click="handlerClick(props.item.Symbol)"
               :class="[colorRate(props.item.Stock_dividend_rate)]"
             >{{ props.item.Stock_dividend_rate == null ? '-': props.item.Stock_dividend_rate + '%' }}</td>
             <td
+              @click="handlerClick(props.item.Symbol)"
               :class="[colorRate(props.item.Score)]"
             >{{ props.item.Score }}%</td>
           </tr>

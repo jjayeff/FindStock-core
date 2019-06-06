@@ -18,53 +18,53 @@
 
   export default {
     computed: {
-      ...mapGetters(['SingleStock']),
+      ...mapGetters(['singleStock']),
       lists: function() {
         var arr = []
-        if(this.SingleStock.length > 0) {
-          var finance = this.SingleStock[0].Finance.FinanceStatYearly;
+        if(this.singleStock.length > 0) {
+          var finance = this.singleStock[0].Finance.FinanceStatYearly;
           var Lastprice = [], Market_cap = [], FS_date = [], PE = [], PBV = [], BookValue_Share = [], Dvd_Yield = []
           if(finance != null) {
             Lastprice = finance.map((value) => {
               return value.Lastprice
             })
-            Lastprice.push(this.SingleStock[0].Finance.FinanceStatDaily.Lastprice)
+            Lastprice.push(this.singleStock[0].Finance.FinanceStatDaily.Lastprice)
             Lastprice.unshift('ราคาล่าสุด(บาท)')
             
             Market_cap = finance.map((value) => {
               return value.Market_cap
             })
-            Market_cap.push(this.SingleStock[0].Finance.FinanceStatDaily.Market_cap)
+            Market_cap.push(this.singleStock[0].Finance.FinanceStatDaily.Market_cap)
             Market_cap.unshift('มูลค่าหลักทรัพย์ตามราคาตลาด')
 
             FS_date = finance.map((value) => {
               return value.FS_date
             })
-            FS_date.push(this.SingleStock[0].Finance.FinanceStatDaily.FS_date)
+            FS_date.push(this.singleStock[0].Finance.FinanceStatDaily.FS_date)
             FS_date.unshift('วันที่ของงบการเงินที่ใช้คำนวณค่าสถิติ')
 
             PE = finance.map((value) => {
               return value.PE
             })
-            PE.push(this.SingleStock[0].Finance.FinanceStatDaily.PE)
+            PE.push(this.singleStock[0].Finance.FinanceStatDaily.PE)
             PE.unshift('P/E (เท่า)')
 
             PBV = finance.map((value) => {
               return value.PBV
             })
-            PBV.push(this.SingleStock[0].Finance.FinanceStatDaily.PBV)
+            PBV.push(this.singleStock[0].Finance.FinanceStatDaily.PBV)
             PBV.unshift('P/BV (เท่า)')
 
             BookValue_Share = finance.map((value) => {
               return value.BookValue_Share
             })
-            BookValue_Share.push(this.SingleStock[0].Finance.FinanceStatDaily.BookValue_Share)
+            BookValue_Share.push(this.singleStock[0].Finance.FinanceStatDaily.BookValue_Share)
             BookValue_Share.unshift('มูลค่าหุ้นทางบัญชีต่อหุ้น (บาท)')
 
             Dvd_Yield = finance.map((value) => {
               return value.Dvd_Yield
             })
-            Dvd_Yield.push(this.SingleStock[0].Finance.FinanceStatDaily.Dvd_Yield)
+            Dvd_Yield.push(this.singleStock[0].Finance.FinanceStatDaily.Dvd_Yield)
             Dvd_Yield.unshift('อัตราส่วนเงินปันผลตอบแทน(%)')
           }
           arr = [
@@ -102,8 +102,8 @@
       },
       titles: function() {
         var arr = []
-        if(this.SingleStock.length > 0) {
-          var finance = this.SingleStock[0].Finance.FinanceStatYearly;
+        if(this.singleStock.length > 0) {
+          var finance = this.singleStock[0].Finance.FinanceStatYearly;
           var Dates = []
           if(finance != null) {
             Dates = finance.map((value) => {
@@ -119,8 +119,8 @@
       },
       quarter: function() {
         var obj = {}
-        if(this.SingleStock.length > 0) {
-          var tmp = this.SingleStock[0].Finance.FinanceStatDaily
+        if(this.singleStock.length > 0) {
+          var tmp = this.singleStock[0].Finance.FinanceStatDaily
           obj['year'] = tmp.Year;
           obj['date'] = tmp.Date;
           obj['quarter'] = tmp.Quarter;

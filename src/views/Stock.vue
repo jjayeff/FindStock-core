@@ -19,10 +19,15 @@
       }
     },
     methods: {
-      ...mapActions(['fetchSingleStock'])
+      ...mapActions(['fetchSingleStock', 'fetchSector'])
     },
     computed: {
-      ...mapGetters(['stockLoading'])
+      ...mapGetters(['stockLoading', 'singleStock'])
+    },
+    watch: {
+      singleStock: function() {
+        this.fetchSector(this.singleStock[0].Sector);
+      }
     },
     created() {
       document.title = 'หุ้น ' + this.symbol + ' ข้อมูลรายละเอียดบริษัท - FindStock'
