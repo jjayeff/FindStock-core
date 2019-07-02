@@ -11,7 +11,7 @@ router.beforeEach(async (to, from, next) => {
   // change title of website
   document.title = to.meta.title
   // send ip address to DB
-  getIpAddress(to.fullPath, from.fullPath)
+  //getIpAddress(to.fullPath, from.fullPath)
   next()
 })
 

@@ -15,7 +15,8 @@ async function GetIpAddress (to, from) {
     result["Longitude"] = json.longitude;
     result["Path_To"] = document.location.origin + to;
     result["Path_From"] = document.location.origin + from;
-    await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
+    console.log(result);
+    //await stockService.postVisitor('https://cors-anywhere.herokuapp.com/http://findstockapi.cloudapp.net/api/visitor', result);
   });
 
 }
