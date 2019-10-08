@@ -24,14 +24,14 @@ const actions = {
   async fetchFastStock({ commit }) {
     this.loading = true;
     const res = await stockService.getUserByPath(
-      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-120-221.ap-southeast-2.compute.amazonaws.com:3000/api/stockfast'
+      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-110-80.ap-southeast-2.compute.amazonaws.com:4001/api/stockfast'
     );
     commit('SET_STOCK', res);
   },
   async fetchSingleStock({ commit }, symbol) {
     this.loading = true;
     const res = await stockService.getUserByPath(
-      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-120-221.ap-southeast-2.compute.amazonaws.com:3000/api/stock/' +
+      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-110-80.ap-southeast-2.compute.amazonaws.com:4001/api/stock/' +
         symbol
     );
     commit('SET_SINGLE_STOCK', res);
@@ -39,7 +39,7 @@ const actions = {
   async fetchSector({ commit }, sector) {
     this.loading = true;
     const res = await stockService.getUserByPath(
-      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-120-221.ap-southeast-2.compute.amazonaws.com:3000/api/sector/' +
+      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-110-80.ap-southeast-2.compute.amazonaws.com:4001/api/sector/' +
         sector
     );
     commit('SET_SECTOR', res);

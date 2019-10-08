@@ -4,7 +4,7 @@ class StockProvider extends HttpRequest {
   constructor() {
     // api api
     super(
-      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-120-221.ap-southeast-2.compute.amazonaws.com:3000/api/stock'
+      'https://cors-anywhere.herokuapp.com/http://ec2-54-206-110-80.ap-southeast-2.compute.amazonaws.com:4001/api/stock'
     );
   }
 
